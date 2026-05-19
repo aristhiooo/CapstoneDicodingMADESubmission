@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation_graph"
+    app:startDestination="@id/navigationHome">
+
+    <fragment
+        android:id="@+id/navigationHome"
+        android:name="io.aristiyo.capstone.screen.home.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+
+    <include-dynamic
+        android:id="@+id/navigationFavouriteFeature"
+        app:graphPackage="io.aristiyo.capstone.favouritefeature"
+        app:graphResName="favourite_navigation_graph"
+        app:moduleName="favouritefeature" />
+</navigation>

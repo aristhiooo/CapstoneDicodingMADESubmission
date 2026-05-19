@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Capstone</string>
+
+    <string name="cd_favourite">Tambah ke favorit</string>
+    <string name="cd_twitter">Buka Twitter</string>
+    <string name="cd_instagram">Buka Instagram</string>
+    <string name="cd_facebook">Buka Facebook</string>
+    <string name="cd_youtube">Buka YouTube</string>
+    <string name="cd_banner">Image View Banner</string>
+
+    <string name="label_about">Tentang Klub</string>
+    <string name="label_nicknames">Julukan</string>
+    <string name="label_follow">Media Sosial</string>
+    <string name="label_gallery">Galeri</string>
+    <string name="label_kit">Kostum</string>
+    <string name="label_club_colours">Warna Klub</string>
+    <string name="label_website">Website</string>
+
+    <string name="action_read_more">Read more</string>
+    <string name="action_read_less">Show less</string>
+
+    <string name="format_capacity">Kapasitas: %,d kursi</string>
+    <string name="format_formed_year">Est. %s</string>
+
+    <string name="text_no_data">Belum ada klub/tim yang difavoritkan :)</string>
+    <string name="text_menu_home">Home</string>
+    <string name="text_menu_favourite">Favourite</string>
+    <string name="title_favouritefeature">Favourite Feature</string>
+</resources>
