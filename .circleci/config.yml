@@ -8,6 +8,7 @@ jobs:
     executor:
       name: android/android_docker
       tag: 2025.03.1
+      resource-class: large
     steps:
       - checkout
       - android/restore_gradle_cache
@@ -16,10 +17,10 @@ jobs:
           command: chmod +x ./gradlew
       - run:
           name: Run Build
-          command: ./gradlew build
+          command: ./gradlew assembleDebug
       - run:
           name: Run Tests
-          command: ./gradlew lint test
+          command: ./gradlew lint testDebug
       - android/save_gradle_cache
       - store_artifacts:
           path: app/build/reports
