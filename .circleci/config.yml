@@ -5,8 +5,8 @@ orbs:
 jobs:
   build:
     executor:
-      name: android/android-machine
-      tag: 2025.10.1
+      name: android/android_docker
+      tag: 2025.03.1
     steps:
       - checkout
       - android/restore_gradle_cache
