@@ -20,9 +20,9 @@ jobs:
       - run:
           name: Chmod permissions
           command: chmod +x ./gradlew
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
+#      - run:
+#          name: Download Dependencies
+#          command: ./gradlew androidDependencies
       - save_cache:
           key: android-v1-{{ checksum "/tmp/CIRCLECI_CACHE_KEY" }}
           paths:
