@@ -30,25 +30,25 @@ CapstoneDicodingMADESubmission/
 
 ### Penjelasan Modul
 
-| Modul | Tipe | Deskripsi |
-|---|---|---|
-| `:app` | Application | Entry point aplikasi. Mengelola navigasi dan UI utama. |
-| `:core` | Android Library | Berisi data layer (Room, Retrofit), domain layer (UseCase, Repository interface), dan Hilt DI modules. |
-| `:favouritefeature` | Dynamic Feature | Fitur favorit yang di-load secara dinamis (on-demand) untuk mengurangi ukuran APK awal. |
+| Modul               | Tipe            | Deskripsi                                                                                              |
+|---------------------|-----------------|--------------------------------------------------------------------------------------------------------|
+| `:app`              | Application     | Entry point aplikasi. Mengelola navigasi dan UI utama.                                                 |
+| `:core`             | Android Library | Berisi data layer (Room, Retrofit), domain layer (UseCase, Repository interface), dan Hilt DI modules. |
+| `:favouritefeature` | Dynamic Feature | Fitur favorit yang di-load secara dinamis (on-demand) untuk mengurangi ukuran APK awal.                |
 
 ---
 
 ## 🔧 Tech Stack
 
-| Kategori | Library / Tool |
-|---|---|
-| **Bahasa** | Kotlin 100% |
-| **Dependency Injection** | Dagger Hilt |
+| Kategori                 | Library / Tool                 |
+|--------------------------|--------------------------------|
+| **Bahasa**               | Kotlin 100%                    |
+| **Dependency Injection** | Dagger Hilt                    |
 | **Annotation Processor** | KSP (Kotlin Symbol Processing) |
-| **Arsitektur** | Clean Architecture + MVVM |
-| **Fitur Dinamis** | Android Dynamic Feature Module |
-| **CI/CD** | CircleCI |
-| **Build System** | Gradle (Kotlin DSL `.kts`) |
+| **Arsitektur**           | Clean Architecture + MVVM      |
+| **Fitur Dinamis**        | Android Dynamic Feature Module |
+| **CI/CD**                | CircleCI                       |
+| **Build System**         | Gradle (Kotlin DSL `.kts`)     |
 
 ---
 

@@ -17,8 +17,8 @@ android {
         applicationId = "io.aristiyo.capstone"
         minSdk = 24
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 2
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -64,5 +64,5 @@ dependencies {
     ksp(libs.hilt.compiler)
 
     implementation(libs.glide)
-
+    debugImplementation(libs.leakcanary.android)
 }
