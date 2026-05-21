@@ -18,24 +18,29 @@ import io.aristiyo.core.ui.TeamItemAdapter
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
-    private val teamItemAdapter = TeamItemAdapter { team ->
-        val intent = Intent(activity, DetailTeamActivity::class.java)
-        intent.putExtra(DetailTeamActivity.EXTRA_DATA, team)
-        startActivity(intent)
-    }
+    private val teamItemAdapter =
+        TeamItemAdapter { team ->
+            val intent = Intent(activity, DetailTeamActivity::class.java)
+            intent.putExtra(DetailTeamActivity.EXTRA_DATA, team)
+            startActivity(intent)
+        }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
@@ -53,11 +58,12 @@ class HomeFragment : Fragment() {
 
                         is ResultStatus.Error -> {
                             binding.progressBar.isVisible = false
-                            Toast.makeText(
-                                activity,
-                                result.message ?: "Something Wrong :(",
-                                Toast.LENGTH_LONG
-                            ).show()
+                            Toast
+                                .makeText(
+                                    activity,
+                                    result.message ?: "Something Wrong :(",
+                                    Toast.LENGTH_LONG,
+                                ).show()
                         }
                     }
                 }

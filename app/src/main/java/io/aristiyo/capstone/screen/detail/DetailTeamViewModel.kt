@@ -9,11 +9,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailTeamViewModel @Inject constructor(private val teamUseCase: TeamUseCase) : ViewModel() {
-
-    fun saveFavouriteTeam(team: Team, isFavourite: Boolean) {
-        viewModelScope.launch {
-            teamUseCase.saveFavouriteTeam(team, isFavourite)
+class DetailTeamViewModel
+    @Inject
+    constructor(
+        private val teamUseCase: TeamUseCase,
+    ) : ViewModel() {
+        fun saveFavouriteTeam(
+            team: Team,
+            isFavourite: Boolean,
+        ) {
+            viewModelScope.launch {
+                teamUseCase.saveFavouriteTeam(team, isFavourite)
+            }
         }
     }
-}

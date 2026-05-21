@@ -8,6 +8,5 @@ import io.aristiyo.core.domain.usecase.TeamUseCase
 @EntryPoint
 @InstallIn(SingletonComponent::class)
 interface AppEntryPoint {
-
     fun teamUseCase(): TeamUseCase
 }

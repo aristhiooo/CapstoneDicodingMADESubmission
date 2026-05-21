@@ -18,36 +18,45 @@ import io.aristiyo.favouritefeature.databinding.FragmentFavouriteBinding
 import javax.inject.Inject
 
 class FavouriteFragment : Fragment() {
-
     @Inject
     lateinit var factory: ViewModelFactory
     private var _binding: FragmentFavouriteBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
     private val viewModel: FavouriteViewModel by viewModels { factory }
-    private val teamItemAdapter = TeamItemAdapter { team ->
-        val intent = Intent(activity, DetailTeamActivity::class.java)
-        intent.putExtra(DetailTeamActivity.EXTRA_DATA, team)
-        startActivity(intent)
-    }
+    private val teamItemAdapter =
+        TeamItemAdapter { team ->
+            val intent = Intent(activity, DetailTeamActivity::class.java)
+            intent.putExtra(DetailTeamActivity.EXTRA_DATA, team)
+            startActivity(intent)
+        }
 
     override fun onAttach(context: Context) {
-        DaggerFavouriteComponent.builder().context(context).appDependencies(
-            EntryPointAccessors.fromApplication(
-                context.applicationContext,
-                AppEntryPoint::class.java
-            )
-        ).build().inject(this@FavouriteFragment)
+        DaggerFavouriteComponent
+            .builder()
+            .context(context)
+            .appDependencies(
+                EntryPointAccessors.fromApplication(
+                    context.applicationContext,
+                    AppEntryPoint::class.java,
+                ),
+            ).build()
+            .inject(this@FavouriteFragment)
         super.onAttach(context)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFavouriteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         if (activity != null) {
@@ -66,6 +75,7 @@ class FavouriteFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.rvTeamList.adapter = null
         _binding = null
     }
 }

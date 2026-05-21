@@ -9,14 +9,16 @@ import com.bumptech.glide.Glide
 
 fun View.setColourDot(hexColour: String?) {
     if (hexColour.isNullOrBlank()) {
-        isVisible = false; return
+        isVisible = false
+        return
     }
     isVisible = true
     (background as? GradientDrawable)?.setColor(hexColour.toColorInt())
 }
 
 fun ImageView.loadImage(url: String?) {
-    Glide.with(this.context)
+    Glide
+        .with(this.context)
         .load(url)
         .centerCrop()
         .into(this)

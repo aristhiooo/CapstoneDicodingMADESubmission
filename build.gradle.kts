@@ -6,4 +6,15 @@ plugins {
     alias(libs.plugins.kotlin.ksp) apply false
     alias(libs.plugins.dagger.hilt) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
+    alias(libs.plugins.kover) apply false
+    alias(libs.plugins.owasp.depcheck)
+}
+
+dependencyCheck {
+    failBuildOnCVSS = 7.0f
+    formats = listOf("HTML", "XML")
+    suppressionFile = "owasp-suppressions.xml"
+    nvd {
+        apiKey = System.getenv("NVD_API_KEY") ?: ""
+    }
 }
