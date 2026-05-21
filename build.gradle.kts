@@ -16,5 +16,20 @@ dependencyCheck {
     suppressionFile = "owasp-suppressions.xml"
     nvd {
         apiKey = System.getenv("NVD_API_KEY") ?: ""
+        delay = 3500
+    }
+    analyzers {
+        assemblyEnabled = false
+        nuspecEnabled = false
+        nugetconfEnabled = false
+        pyDistributionEnabled = false
+        pyPackageEnabled = false
+        rubygemsEnabled = false
+        cmakeEnabled = false
+        autoconfEnabled = false
+        composerEnabled = false
+        cocoapodsEnabled = false
+        swiftEnabled = false
+        bundleAuditEnabled = false
     }
 }

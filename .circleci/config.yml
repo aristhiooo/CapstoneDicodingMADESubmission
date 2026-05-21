@@ -62,10 +62,21 @@ jobs:
       - run:
           name: Chmod permissions
           command: chmod +x ./gradlew
+      - restore_cache:
+          keys:
+            - owasp-db-{{ checksum "build.gradle.kts" }}
+            - owasp-db-
+
       - run:
           name: OWASP Dependency Check
           command: ./gradlew dependencyCheckAnalyze
-          no_output_timeout: 30m
+          no_output_timeout: 45m
+
+      - save_cache:
+          key: owasp-db-{{ checksum "build.gradle.kts" }}
+          paths:
+            - ~/.gradle/dependency-check-data
+
       - store_artifacts:
           path: build/reports/dependency-check
           destination: owasp-reports
