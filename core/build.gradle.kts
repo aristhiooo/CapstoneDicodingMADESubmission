@@ -28,17 +28,17 @@ android {
         buildConfigField(
             "String",
             "ENCRYPTION_PASSWORD",
-            project.findProperty("ENCRYPTION_PASSWORD") as String? ?: ""
+            project.findProperty("ENCRYPTION_PASSWORD") as String? ?: "",
         )
         buildConfigField(
             "String",
             "CERTIFICATE_PIN",
-            project.findProperty("CERTIFICATE_PIN") as String? ?: ""
+            project.findProperty("CERTIFICATE_PIN") as String? ?: "",
         )
         buildConfigField(
             "String",
             "CERTIFICATE_PIN2",
-            project.findProperty("CERTIFICATE_PIN2") as String? ?: ""
+            project.findProperty("CERTIFICATE_PIN2") as String? ?: "",
         )
     }
 
@@ -114,7 +114,7 @@ kover {
                     "*_Factory",
                     "*_HiltModules*",
                     "hilt_aggregated_deps.*",
-                    "*.di.*"
+                    "*.di.*",
                 )
             }
         }
