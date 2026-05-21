@@ -15,42 +15,39 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class TeamRepository @Inject constructor(
-    private val remoteDataSource: RemoteDataSource,
-    private val localDataSource: LocalDataSource,
-) : ITeamsRepository {
+class TeamRepository
+    @Inject
+    constructor(
+        private val remoteDataSource: RemoteDataSource,
+        private val localDataSource: LocalDataSource,
+    ) : ITeamsRepository {
+        override fun getAllTeams(): Flow<ResultStatus<List<Team>>> =
+            object : NetworkBoundResource<List<Team>, List<TeamDto>>() {
+                override fun loadFromDB(): Flow<List<Team>> =
+                    localDataSource.getAllTeams().map {
+                        it.toDomainList()
+                    }
 
-    override fun getAllTeams(): Flow<ResultStatus<List<Team>>> {
-        return object : NetworkBoundResource<List<Team>, List<TeamDto>>() {
-            override fun loadFromDB(): Flow<List<Team>> {
-                return localDataSource.getAllTeams().map {
-                    it.toDomainList()
+                override fun shouldFetch(data: List<Team>?): Boolean = data.isNullOrEmpty()
+
+                override suspend fun createCall(): Flow<ApiStatus<List<TeamDto>>> = remoteDataSource.getAllTeams()
+
+                override suspend fun saveCallResult(data: List<TeamDto>) {
+                    val teamList = data.toEntityList()
+                    localDataSource.insertTeams(teamList)
                 }
+            }.asFlow()
+
+        override fun getFavouriteTeam(): Flow<List<Team>> =
+            localDataSource.getFavouriteTeams().map {
+                it.toDomainList()
             }
 
-            override fun shouldFetch(data: List<Team>?): Boolean {
-                return data.isNullOrEmpty()
-            }
-
-            override suspend fun createCall(): Flow<ApiStatus<List<TeamDto>>> {
-                return remoteDataSource.getAllTeams()
-            }
-
-            override suspend fun saveCallResult(data: List<TeamDto>) {
-                val teamList = data.toEntityList()
-                localDataSource.insertTeams(teamList)
-            }
-        }.asFlow()
-    }
-
-    override fun getFavouriteTeam(): Flow<List<Team>> {
-        return localDataSource.getFavouriteTeams().map {
-            it.toDomainList()
+        override suspend fun saveFavouriteTeam(
+            team: Team,
+            state: Boolean,
+        ) {
+            val teamEntity = team.toEntity()
+            localDataSource.saveFavouriteTeam(teamEntity, state)
         }
     }
-
-    override suspend fun saveFavouriteTeam(team: Team, state: Boolean) {
-        val teamEntity = team.toEntity()
-        localDataSource.saveFavouriteTeam(teamEntity, state)
-    }
-}

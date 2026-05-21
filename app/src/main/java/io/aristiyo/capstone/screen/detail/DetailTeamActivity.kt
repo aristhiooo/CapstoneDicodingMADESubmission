@@ -21,7 +21,6 @@ import io.aristiyo.core.utils.setColourDot
 
 @AndroidEntryPoint
 class DetailTeamActivity : AppCompatActivity() {
-
     private val binding: ActivityDetailTeamBinding by lazy {
         ActivityDetailTeamBinding.inflate(layoutInflater)
     }
@@ -45,49 +44,55 @@ class DetailTeamActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupViews(team: Team) = with(binding) {
-        tvTeamName.text = team.name
-        tvNameAlternate.text = team.nameAlternate
-        chipShortName.text = team.nameShort
-        tvLeague.text = team.league
-        tvCountry.text = team.country
-        tvFormedYear.text = getString(R.string.format_formed_year, team.formedYear)
-        tvStadium.text = team.stadium
-        tvCapacity.text = getString(R.string.format_capacity, team.stadiumCapacity)
-        tvLocation.text = team.location
-        tvDescription.text = team.description
+    private fun setupViews(team: Team) =
+        with(binding) {
+            tvTeamName.text = team.name
+            tvNameAlternate.text = team.nameAlternate
+            chipShortName.text = team.nameShort
+            tvLeague.text = team.league
+            tvCountry.text = team.country
+            tvFormedYear.text = getString(R.string.format_formed_year, team.formedYear)
+            tvStadium.text = team.stadium
+            tvCapacity.text = getString(R.string.format_capacity, team.stadiumCapacity)
+            tvLocation.text = team.location
+            tvDescription.text = team.description
 
-        viewColour1.setColourDot(team.colourPrimary)
-        viewColour2.setColourDot(team.colourSecondary)
-        viewColour3.setColourDot(team.colourTertiary)
+            viewColour1.setColourDot(team.colourPrimary)
+            viewColour2.setColourDot(team.colourSecondary)
+            viewColour3.setColourDot(team.colourTertiary)
 
-        team.keywords?.split(",")?.forEach { keyword ->
-            cgKeywords.addView(Chip(this@DetailTeamActivity).apply {
-                text = keyword.trim()
-            })
+            team.keywords?.split(",")?.forEach { keyword ->
+                cgKeywords.addView(
+                    Chip(this@DetailTeamActivity).apply {
+                        text = keyword.trim()
+                    },
+                )
+            }
         }
-    }
 
-    private fun setupSocialMedia(team: Team) = with(binding) {
-        val socialPlatforms = listOf(
-            btnWeb to team.website,
-            btnTwitter to team.twitter,
-            btnInstagram to team.instagram,
-            btnFacebook to team.facebook,
-            btnYoutube to team.youtube
-        )
+    private fun setupSocialMedia(team: Team) =
+        with(binding) {
+            val socialPlatforms =
+                listOf(
+                    btnWeb to team.website,
+                    btnTwitter to team.twitter,
+                    btnInstagram to team.instagram,
+                    btnFacebook to team.facebook,
+                    btnYoutube to team.youtube,
+                )
 
-        socialPlatforms.forEach { (button, url) ->
-            button.isVisible = !url.isNullOrBlank()
-            button.setOnClickListener { openUrl("https://$url") }
+            socialPlatforms.forEach { (button, url) ->
+                button.isVisible = !url.isNullOrBlank()
+                button.setOnClickListener { openUrl("https://$url") }
+            }
         }
-    }
 
-    private fun setupImages(team: Team) = with(binding) {
-        imgBanner.loadImage(team.bannerUrl)
-        imgBadge.loadImage(team.badgeUrl)
-        imgEquipment.loadImage(team.equipmentUrl)
-    }
+    private fun setupImages(team: Team) =
+        with(binding) {
+            imgBanner.loadImage(team.bannerUrl)
+            imgBadge.loadImage(team.badgeUrl)
+            imgEquipment.loadImage(team.equipmentUrl)
+        }
 
     private fun setupRecyclerView(urls: List<String>) {
         fanartAdapter.submitList(urls.filter { it.isNotBlank() })
@@ -109,16 +114,18 @@ class DetailTeamActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupDescriptionToggle() = with(binding) {
-        var isExpanded = false
-        btnReadMore.setOnClickListener {
-            isExpanded = !isExpanded
-            tvDescription.maxLines = if (isExpanded) Int.MAX_VALUE else 4
-            btnReadMore.text = getString(
-                if (isExpanded) R.string.action_read_less else R.string.action_read_more
-            )
+    private fun setupDescriptionToggle() =
+        with(binding) {
+            var isExpanded = false
+            btnReadMore.setOnClickListener {
+                isExpanded = !isExpanded
+                tvDescription.maxLines = if (isExpanded) Int.MAX_VALUE else 4
+                btnReadMore.text =
+                    getString(
+                        if (isExpanded) R.string.action_read_less else R.string.action_read_more,
+                    )
+            }
         }
-    }
 
     private fun updateFavoriteIcon(isFavorite: Boolean) {
         val iconRes = if (isFavorite) R.drawable.ic_favorite else R.drawable.ic_not_favorite

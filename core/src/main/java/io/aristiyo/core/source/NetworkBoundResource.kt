@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 abstract class NetworkBoundResource<ResultType, RequestType> {
-
     protected open fun onFetchFailed() {}
 
     protected abstract fun loadFromDB(): Flow<ResultType>
@@ -19,26 +18,27 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     protected abstract suspend fun saveCallResult(data: RequestType)
 
-    fun asFlow(): Flow<ResultStatus<ResultType>> = flow {
-        emit(ResultStatus.Loading())
-        val dbSource = loadFromDB().first()
-        if (shouldFetch(dbSource)) {
+    fun asFlow(): Flow<ResultStatus<ResultType>> =
+        flow {
             emit(ResultStatus.Loading())
-            when (val apiResponse = createCall().first()) {
-                is ApiStatus.Success -> {
-                    saveCallResult(apiResponse.data)
-                    emitAll(loadFromDB().map { ResultStatus.Success(it) })
-                }
+            val dbSource = loadFromDB().first()
+            if (shouldFetch(dbSource)) {
+                emit(ResultStatus.Loading())
+                when (val apiResponse = createCall().first()) {
+                    is ApiStatus.Success -> {
+                        saveCallResult(apiResponse.data)
+                        emitAll(loadFromDB().map { ResultStatus.Success(it) })
+                    }
 
-                is ApiStatus.Error -> {
-                    onFetchFailed()
-                    emit(ResultStatus.Error(apiResponse.errorMessage))
-                }
+                    is ApiStatus.Error -> {
+                        onFetchFailed()
+                        emit(ResultStatus.Error(apiResponse.errorMessage))
+                    }
 
-                is ApiStatus.Empty -> emitAll(loadFromDB().map { ResultStatus.Success(it) })
+                    is ApiStatus.Empty -> emitAll(loadFromDB().map { ResultStatus.Success(it) })
+                }
+            } else {
+                emitAll(loadFromDB().map { ResultStatus.Success(it) })
             }
-        } else {
-            emitAll(loadFromDB().map { ResultStatus.Success(it) })
         }
-    }
 }

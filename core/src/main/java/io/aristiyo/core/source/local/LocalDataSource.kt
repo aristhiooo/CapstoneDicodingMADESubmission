@@ -7,16 +7,22 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class LocalDataSource @Inject constructor(private val teamDao: TeamDao) {
+class LocalDataSource
+    @Inject
+    constructor(
+        private val teamDao: TeamDao,
+    ) {
+        fun getAllTeams(): Flow<List<TeamEntity>> = teamDao.getAllTeams()
 
-    fun getAllTeams(): Flow<List<TeamEntity>> = teamDao.getAllTeams()
+        fun getFavouriteTeams(): Flow<List<TeamEntity>> = teamDao.getFavoriteTeams()
 
-    fun getFavouriteTeams(): Flow<List<TeamEntity>> = teamDao.getFavoriteTeams()
+        suspend fun insertTeams(teams: List<TeamEntity>) = teamDao.insertAll(teams)
 
-    suspend fun insertTeams(teams: List<TeamEntity>) = teamDao.insertAll(teams)
-
-    suspend fun saveFavouriteTeam(team: TeamEntity, newState: Boolean) {
-        team.isFavourite = newState
-        teamDao.updateFavoriteTeam(team)
+        suspend fun saveFavouriteTeam(
+            team: TeamEntity,
+            newState: Boolean,
+        ) {
+            team.isFavourite = newState
+            teamDao.updateFavoriteTeam(team)
+        }
     }
-}

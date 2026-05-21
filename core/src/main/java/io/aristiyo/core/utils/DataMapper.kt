@@ -4,8 +4,8 @@ import io.aristiyo.core.domain.model.Team
 import io.aristiyo.core.source.local.entity.TeamEntity
 import io.aristiyo.core.source.remote.response.TeamDto
 
-fun TeamDto.toEntity(): TeamEntity {
-    return TeamEntity(
+fun TeamDto.toEntity(): TeamEntity =
+    TeamEntity(
         idTeam = idTeam.orEmpty(),
         name = strTeam.orEmpty(),
         nameAlternate = strTeamAlternate,
@@ -37,12 +37,11 @@ fun TeamDto.toEntity(): TeamEntity {
         equipmentUrl = strEquipment,
         isFavourite = false,
     )
-}
 
 fun List<TeamDto>.toEntityList(): List<TeamEntity> = map { it.toEntity() }
 
-fun TeamEntity.toDomain(): Team {
-    return Team(
+fun TeamEntity.toDomain(): Team =
+    Team(
         idTeam = idTeam,
         name = name,
         nameAlternate = nameAlternate,
@@ -71,12 +70,11 @@ fun TeamEntity.toDomain(): Team {
         equipmentUrl = equipmentUrl,
         isFavourite = isFavourite,
     )
-}
 
 fun List<TeamEntity>.toDomainList(): List<Team> = map { it.toDomain() }
 
-fun Team.toEntity(): TeamEntity {
-    return TeamEntity(
+fun Team.toEntity(): TeamEntity =
+    TeamEntity(
         idTeam = idTeam,
         name = name,
         nameAlternate = nameAlternate,
@@ -108,4 +106,3 @@ fun Team.toEntity(): TeamEntity {
         equipmentUrl = equipmentUrl,
         isFavourite = isFavourite,
     )
-}

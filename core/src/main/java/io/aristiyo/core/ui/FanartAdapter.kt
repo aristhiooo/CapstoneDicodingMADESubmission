@@ -10,17 +10,23 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import io.aristiyo.core.databinding.ItemFanartBinding
 
 class FanartAdapter : ListAdapter<String, FanartAdapter.FanartViewHolder>(DIFF_CALLBACK) {
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FanartViewHolder {
-        val binding = ItemFanartBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false,
-        )
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): FanartViewHolder {
+        val binding =
+            ItemFanartBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false,
+            )
         return FanartViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: FanartViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: FanartViewHolder,
+        position: Int,
+    ) {
         holder.bind(getItem(position))
     }
 
@@ -29,11 +35,12 @@ class FanartAdapter : ListAdapter<String, FanartAdapter.FanartViewHolder>(DIFF_C
         holder.onRecycled()
     }
 
-    class FanartViewHolder(private val binding: ItemFanartBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
+    class FanartViewHolder(
+        private val binding: ItemFanartBinding,
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imageUrl: String) {
-            Glide.with(binding.imgFanart)
+            Glide
+                .with(binding.imgFanart)
                 .load(imageUrl)
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade(150))
@@ -46,14 +53,17 @@ class FanartAdapter : ListAdapter<String, FanartAdapter.FanartViewHolder>(DIFF_C
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<String>() {
-            override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
-                return oldItem == newItem
-            }
+        private val DIFF_CALLBACK =
+            object : DiffUtil.ItemCallback<String>() {
+                override fun areItemsTheSame(
+                    oldItem: String,
+                    newItem: String,
+                ): Boolean = oldItem == newItem
 
-            override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
-                return oldItem == newItem
+                override fun areContentsTheSame(
+                    oldItem: String,
+                    newItem: String,
+                ): Boolean = oldItem == newItem
             }
-        }
     }
 }

@@ -1,13 +1,17 @@
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
+
 plugins {
     alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.ktlint)
 }
 android {
     namespace = "io.aristiyo.favouritefeature"
     compileSdk {
-        version = release(36) {
-            minorApiLevel = 1
-        }
+        version =
+            release(36) {
+                minorApiLevel = 1
+            }
     }
 
     defaultConfig {
@@ -45,4 +49,13 @@ dependencies {
     implementation(libs.material)
 
     implementation(libs.androidx.navigation.dynamic.features.fragment)
+}
+
+ktlint {
+    android.set(true)
+    ignoreFailures.set(false)
+    reporters {
+        reporter(ReporterType.PLAIN)
+        reporter(ReporterType.CHECKSTYLE)
+    }
 }

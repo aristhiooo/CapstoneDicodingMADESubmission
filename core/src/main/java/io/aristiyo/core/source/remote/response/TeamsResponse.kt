@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class TeamsResponse(
     @SerializedName("teams")
-    val teams: List<TeamDto>?
+    val teams: List<TeamDto>?,
 )
 
 data class TeamDto(
@@ -16,7 +16,6 @@ data class TeamDto(
     val idApiFootball: String?,
     @SerializedName("intLoved")
     val intLoved: String?,
-
     @SerializedName("strTeam")
     val strTeam: String?,
     @SerializedName("strTeamAlternate")
@@ -35,12 +34,10 @@ data class TeamDto(
     val strKeywords: String?,
     @SerializedName("strLocked")
     val strLocked: String?,
-
     @SerializedName("idLeague")
     val idLeague: String?,
     @SerializedName("strLeague")
     val strLeague: String?,
-
     @SerializedName("idLeague2")
     val idLeague2: String?,
     @SerializedName("strLeague2")
@@ -65,10 +62,8 @@ data class TeamDto(
     val idLeague7: String?,
     @SerializedName("strLeague7")
     val strLeague7: String?,
-
     @SerializedName("strDivision")
     val strDivision: String?,
-
     @SerializedName("idVenue")
     val idVenue: String?,
     @SerializedName("strStadium")
@@ -77,7 +72,6 @@ data class TeamDto(
     val strLocation: String?,
     @SerializedName("intStadiumCapacity")
     val intStadiumCapacity: String?,
-
     @SerializedName("strWebsite")
     val strWebsite: String?,
     @SerializedName("strFacebook")
@@ -90,7 +84,6 @@ data class TeamDto(
     val strYoutube: String?,
     @SerializedName("strRSS")
     val strRss: String?,
-
     @SerializedName("strDescriptionEN")
     val strDescriptionEN: String?,
     @SerializedName("strDescriptionDE")
@@ -121,14 +114,12 @@ data class TeamDto(
     val strDescriptionIL: String?,
     @SerializedName("strDescriptionPL")
     val strDescriptionPL: String?,
-
     @SerializedName("strColour1")
     val strColour1: String?,
     @SerializedName("strColour2")
     val strColour2: String?,
     @SerializedName("strColour3")
     val strColour3: String?,
-
     @SerializedName("strBadge")
     val strBadge: String?,
     @SerializedName("strLogo")

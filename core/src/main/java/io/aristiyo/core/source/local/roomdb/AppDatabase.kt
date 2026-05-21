@@ -6,6 +6,5 @@ import io.aristiyo.core.source.local.entity.TeamEntity
 
 @Database(entities = [TeamEntity::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
-
     abstract fun teamDao(): TeamDao
 }

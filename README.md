@@ -136,3 +136,36 @@ Proyek ini dibuat sebagai submission kelas Dicoding dan tidak dilisensikan untuk
 ---
 
 *Dibuat dengan ❤️ sebagai bagian dari program belajar [Dicoding Indonesia](https://www.dicoding.com)*
+
+---
+
+## Catatan Pengerjaan Submission
+**1. Menerapkan Continuous Integration.**
+- Tool yang digunakan adalah **CircleCI**
+- Link project CI : https://app.circleci.com/projects/circleci/2ygcR8gChcoDqMdgmYNVyb/JgtDhaZprLtmVpKEbYjGvZ
+
+**2. Memiliki performa yang baik**
+- Menerapkan Leak Canary dan tidak ada memory leaks saat dianalisa.
+
+**3. Menerapkan Security**
+- Menerapkan obfuscation dengan ProGuard.
+- Menerapkan encryption pada database. (Lokasi file : core/src/main/java/io/aristiyo/core/di/DatabaseModule.kt)
+- Menerapkan certificate pinning untuk koneksi ke server. (Lokasi file : core/src/main/java/io/aristiyo/core/di/NetworkModule.kt)
+
+**4. Mempertahankan syarat yang ada pada submission sebelumnya.**
+
+**5. Saran untuk Penilaian**
+
+- Menerapkan tampilan aplikasi yang sangat menarik dan sesuai standar
+
+- Tidak menggunakan kode yang sama dengan yang di modul. Misal menggunakan Rx, menggunakan Dagger,  tidak menggunakan NetworkBoundResource. **(Dagger-Hilt dan Flow)**
+
+- Hampir tidak ada issue pada semua aspek saat dilakukan Inspect Code.
+
+- Menerapkan Continuous Integration dengan analisis lainnya seperti code coverage **(Kover)**, code style **(Ktlint Gradle)**, dan vulnerability **(OWASP Dependency-Check)**.
+
+- Menerapkan security selain yang telah diajarkan. **(Credential Separation)**
+
+---
+
+Thanks

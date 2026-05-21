@@ -10,7 +10,6 @@ import io.aristiyo.core.source.TeamRepository
 @Module(includes = [NetworkModule::class, DatabaseModule::class])
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
-
     @Binds
     abstract fun provideRepository(teamRepository: TeamRepository): ITeamsRepository
 }
