@@ -28,7 +28,6 @@ androidDatabaseSqlcipher = "4.16.0"
 sqliteKtx = "2.6.2"
 ktlint = "14.2.0"
 kover = "0.9.8"
-owaspDepcheck = "12.2.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -72,4 +71,3 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 android-dynamic-feature = { id = "com.android.dynamic-feature", version.ref = "agp" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
-owasp-depcheck = { id = "org.owasp.dependencycheck", version.ref = "owaspDepcheck" }

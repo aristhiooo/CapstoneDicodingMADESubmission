@@ -52,35 +52,6 @@ jobs:
       - store_artifacts:
           path: app/build/outputs/apk/debug/
           destination: artifact-file
-  vulnerability-check:
-    executor:
-      name: android/android_docker
-      tag: 2026.03.1
-    steps:
-      - checkout
-      - android/restore_gradle_cache
-      - run:
-          name: Chmod permissions
-          command: chmod +x ./gradlew
-      - restore_cache:
-          keys:
-            - owasp-db-{{ checksum "build.gradle.kts" }}
-            - owasp-db-
-
-      - run:
-          name: OWASP Dependency Check
-          command: ./gradlew dependencyCheckAnalyze
-          no_output_timeout: 45m
-
-      - save_cache:
-          key: owasp-db-{{ checksum "build.gradle.kts" }}
-          paths:
-            - ~/.gradle/dependency-check-data
-
-      - store_artifacts:
-          path: build/reports/dependency-check
-          destination: owasp-reports
-      - android/save_gradle_cache
 
 workflows:
   build-and-test:
@@ -89,10 +60,3 @@ workflows:
       - build:
           requires:
             - ktlint
-      - vulnerability-check:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - main

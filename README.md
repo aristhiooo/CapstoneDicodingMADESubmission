@@ -63,7 +63,6 @@ CapstoneDicodingMADESubmission/
 | **CI/CD**                 | CircleCI                                                | —                          |
 | **Code Style**            | Ktlint Gradle                                           | 14.2.0                     |
 | **Code Coverage**         | Kover                                                   | 0.9.8                      |
-| **Vulnerability Scan**    | OWASP Dependency-Check                                  | 12.2.2                     |
 
 ---
 
@@ -121,7 +120,6 @@ Proyek ini dilengkapi konfigurasi **CircleCI** (`.circleci/config.yml`) untuk pi
 | Build & Test       | Gradle + JUnit         | Kompilasi proyek dan menjalankan unit test      |
 | Code Coverage      | Kover                  | Mengukur persentase kode yang tercakup test     |
 | Code Style         | Ktlint Gradle          | Memvalidasi gaya penulisan kode Kotlin          |
-| Vulnerability Scan | OWASP Dependency-Check | Mendeteksi dependency dengan CVE yang diketahui |
 
 🔗 Link project CI: https://app.circleci.com/projects/circleci/2ygcR8gChcoDqMdgmYNVyb/JgtDhaZprLtmVpKEbYjGvZ
 
@@ -215,7 +213,7 @@ Modul `:favouritefeature` mengakses domain layer dari `:core` melalui Hilt `@Ent
 
 **1. Continuous Integration**
 - Tool: **CircleCI** — build dan unit test otomatis di setiap push ke `main`
-- Tambahan: **Kover** (code coverage), **Ktlint** (code style), **OWASP Dependency-Check** (vulnerability scan)
+- Tambahan: **Kover** (code coverage), **Ktlint** (code style)
 - Link: https://app.circleci.com/projects/circleci/2ygcR8gChcoDqMdgmYNVyb/JgtDhaZprLtmVpKEbYjGvZ
 
 **2. Performa**
@@ -233,7 +231,7 @@ Modul `:favouritefeature` mengakses domain layer dari `:core` melalui Hilt `@Ent
 - Menggunakan **Flow** (bukan LiveData atau RxJava) secara konsisten di seluruh data layer
 - Tidak menggunakan `NetworkBoundResource` versi kelas Dicoding — diimplementasikan ulang secara custom
 - Hampir tidak ada issue saat **Inspect Code** dijalankan di Android Studio
-- Implementasi CI dengan analisis tambahan: **Kover** (code coverage), **Ktlint** (code style), **OWASP** (vulnerability)
+- Implementasi CI dengan analisis tambahan: **Kover** (code coverage), **Ktlint** (code style)
 - Security tambahan: **Credential Separation** via `BuildConfig` yang di-inject melalui Gradle
 
 ---
