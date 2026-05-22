@@ -78,6 +78,8 @@ dependencies {
 
     implementation(libs.glide)
     debugImplementation(libs.leakcanary.android)
+
+    implementation(libs.talsec.freerasp)
 }
 
 ktlint {

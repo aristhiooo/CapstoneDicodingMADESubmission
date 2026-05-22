@@ -24,7 +24,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
 
-        buildConfigField("String", "BASE_URL", project.findProperty("BASE_URL") as String? ?: "")
+        buildConfigField(
+            "String",
+            "BASE_URL",
+            project.findProperty("BASE_URL") as String? ?: "",
+        )
         buildConfigField(
             "String",
             "ENCRYPTION_PASSWORD",
@@ -44,7 +48,14 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro",
+            )
+        }
+        debug {
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",

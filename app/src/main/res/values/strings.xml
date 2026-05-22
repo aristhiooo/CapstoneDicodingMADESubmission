@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Capstone</string>
 
     <string name="cd_favourite">Tambah ke favorit</string>
@@ -19,7 +19,7 @@
     <string name="action_read_more">Read more</string>
     <string name="action_read_less">Show less</string>
 
-    <string name="format_capacity">Kapasitas: %,d kursi</string>
+    <string name="format_capacity" tools:ignore="PluralsCandidate">Kapasitas: %,d kursi</string>
     <string name="format_formed_year">Est. %s</string>
 
     <string name="text_no_data">Belum ada klub/tim yang difavoritkan :)</string>
