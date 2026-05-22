@@ -19,92 +19,93 @@ class MainApplication : Application() {
             Timber.plant(Timber.DebugTree())
         }
 
-        val config = TalsecConfig.Builder(
-            EXPECTED_PACKAGE_NAME,
-            EXPECTED_SIGNING_CERTIFICATE_HASH_BASE64
-        )
-            .watcherMail(WATCHER_MAIL)
-            .prod(IS_PROD)
-            .killOnBypass(KILL_ON_BYPASS)
-            .build()
+        val config =
+            TalsecConfig
+                .Builder(
+                    EXPECTED_PACKAGE_NAME,
+                    EXPECTED_SIGNING_CERTIFICATE_HASH_BASE64,
+                ).watcherMail(WATCHER_MAIL)
+                .prod(IS_PROD)
+                .killOnBypass(KILL_ON_BYPASS)
+                .build()
 
         ThreatListener(threatDetectedListener).registerListener(this)
         Talsec.start(this, config, TalsecMode.BACKGROUND)
     }
 
+    val threatDetectedListener =
+        object : ThreatListener.ThreatDetected() {
+            override fun onRootDetected() {
+                Timber.w("onRootDetected")
+            }
 
-    val threatDetectedListener = object : ThreatListener.ThreatDetected() {
+            override fun onDebuggerDetected() {
+                Timber.w("onDebuggerDetected")
+            }
 
-        override fun onRootDetected() {
-            Timber.w("onRootDetected")
+            override fun onEmulatorDetected() {
+                Timber.w("onEmulatorDetected")
+            }
+
+            override fun onTamperDetected() {
+                Timber.w("onTamperDetected")
+            }
+
+            override fun onUntrustedInstallationSourceDetected() {
+                Timber.w("onUntrustedInstallationSourceDetected")
+            }
+
+            override fun onHookDetected() {
+                Timber.w("onHookDetected")
+            }
+
+            override fun onDeviceBindingDetected() {
+                Timber.w("onDeviceBindingDetected")
+            }
+
+            override fun onObfuscationIssuesDetected() {
+                Timber.w("onObfuscationIssueDetected")
+            }
+
+            override fun onScreenshotDetected() {
+                Timber.w("onScreenshotDetected")
+            }
+
+            override fun onScreenRecordingDetected() {
+                Timber.w("onScreenRecordingDetected")
+            }
+
+            override fun onMultiInstanceDetected() {
+                Timber.w("onMultiInstanceDetected")
+            }
+
+            override fun onUnsecureWifiDetected() {
+                Timber.w("onUnsecureWifiDetected")
+            }
+
+            override fun onTimeSpoofingDetected() {
+                Timber.w("onTimeSpoofingDetected")
+            }
+
+            override fun onLocationSpoofingDetected() {
+                Timber.w("onLocationSpoofingDetected")
+            }
+
+            override fun onAutomationDetected() {
+                Timber.w("onAutomationDetected")
+            }
+
+            override fun onMalwareDetected(suspiciousApps: List<SuspiciousAppInfo>) {
+                Timber.w("onMalwareDetected")
+            }
         }
-
-        override fun onDebuggerDetected() {
-            Timber.w("onDebuggerDetected")
-        }
-
-        override fun onEmulatorDetected() {
-            Timber.w("onEmulatorDetected")
-        }
-
-        override fun onTamperDetected() {
-            Timber.w("onTamperDetected")
-        }
-
-        override fun onUntrustedInstallationSourceDetected() {
-            Timber.w("onUntrustedInstallationSourceDetected")
-        }
-
-        override fun onHookDetected() {
-            Timber.w("onHookDetected")
-        }
-
-        override fun onDeviceBindingDetected() {
-            Timber.w("onDeviceBindingDetected")
-        }
-
-        override fun onObfuscationIssuesDetected() {
-            Timber.w("onObfuscationIssueDetected")
-        }
-
-        override fun onScreenshotDetected() {
-            Timber.w("onScreenshotDetected")
-        }
-
-        override fun onScreenRecordingDetected() {
-            Timber.w("onScreenRecordingDetected")
-        }
-
-        override fun onMultiInstanceDetected() {
-            Timber.w("onMultiInstanceDetected")
-        }
-
-        override fun onUnsecureWifiDetected() {
-            Timber.w("onUnsecureWifiDetected")
-        }
-
-        override fun onTimeSpoofingDetected() {
-            Timber.w("onTimeSpoofingDetected")
-        }
-
-        override fun onLocationSpoofingDetected() {
-            Timber.w("onLocationSpoofingDetected")
-        }
-
-        override fun onAutomationDetected() {
-            Timber.w("onAutomationDetected")
-        }
-
-        override fun onMalwareDetected(suspiciousApps: List<SuspiciousAppInfo>) {
-            Timber.w("onMalwareDetected")
-        }
-    }
 
     private companion object {
         private const val EXPECTED_PACKAGE_NAME = "io.aristiyo.capstone"
-        private val EXPECTED_SIGNING_CERTIFICATE_HASH_BASE64 = arrayOf(
-            "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k="
-        )
+        private val EXPECTED_SIGNING_CERTIFICATE_HASH_BASE64 =
+            arrayOf(
+                "mVr/qQLO8DKTwqlL+B1qigl9NoBnbiUs8b4c2Ewcz0k=",
+            )
         private const val WATCHER_MAIL = "aristhiooo@gmail.com"
         private const val IS_PROD = true
         private const val KILL_ON_BYPASS = true
